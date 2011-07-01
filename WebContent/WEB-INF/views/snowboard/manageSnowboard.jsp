@@ -101,7 +101,8 @@
 	                var newText = $(this).val();
 	                var identifier = $(this).parents('div:first').attr('id');
 	                identifier = identifier.split("_");
-	                $.post("/snowboard/ajaxUpdate/"+identifier[0]+"/"+identifier[1]+"/"+newText);
+	                //$.post("/snowboard/ajaxUpdate/"+identifier[0]+"/"+identifier[1]+"/"+newText);
+	                $.post("/AWSCrud/snowboard/ajaxUpdate.do?id="+identifier[0]+"&fieldModified="+identifier[1]+"&newValue="+newText);
 	                $(this).parent().text(newText),find('input').remove();
 	            });
 	});

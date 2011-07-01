@@ -3,7 +3,6 @@ package com.awscrud.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,15 +26,7 @@ public class SnowboardController {
 		
 		return "redirect:manageSnowboard.do";
 	}
-/*
-    @RequestMapping("/deleteEntry.do")
-    public ModelAndView doDeleteEntry (@RequestParam("entryId") String entryId, ModelMap map) {
-        Entry entry = dao.getEntry(entryId);
-        dao.deleteEntry(entry);
-        doHome(map);
-        return new ModelAndView("redirect:home.do");
-    }
-*/	
+	
 	@RequestMapping(value = "/deleteSnowboard.do")
 	public String processDeleteSnowboard(@RequestParam("id") long id) throws Exception {
 		
@@ -44,13 +35,14 @@ public class SnowboardController {
 		return "redirect:/snowboard/manageSnowboard.do";
 	}
 	
-	@RequestMapping(value = "/ajaxUpdate/{id}/{fieldModified}/{newValue}", 
+	@RequestMapping(value = "/ajaxUpdate.do", 
 			method = RequestMethod.POST)
-	public String ajaxUpdate(@PathVariable ("id") Long id, 
-			@PathVariable ("fieldModified") String fieldModified, 
-			@PathVariable ("newValue") String newValue){
+	public String ajaxUpdate(@RequestParam("id") long id, 
+			@RequestParam("fieldModified") String fieldModified, 
+			@RequestParam("newValue") String newValue) throws Exception{
 		
-		//snowboardManager.updateSnowboard(id, fieldModified, newValue);
+		System.out.println("here id: " + id);
+		snowboardService.updateSnowboard(id, fieldModified, newValue);
 
 		return null;
 	}

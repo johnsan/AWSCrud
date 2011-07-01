@@ -21,6 +21,14 @@ public class SnowboardServiceImpl implements SnowboardService {
 	public void deleteSnowboardById(long snowboardId) throws Exception {
 		snowboardDAO.deleteSnowboardById(snowboardId);
 	}
+	
+	public boolean updateSnowboard(Long snowboardId, String fieldModified,
+			String newValue) throws Exception {
+		snowboardDAO.updateSnowboard(snowboardId, fieldModified,
+				newValue);
+		return false;
+	}
+	
 /*
 	public void updateSnowboard(Snowboard snowboard) throws Exception {
 		snowboardDAO.updateSnowboard(snowboard);

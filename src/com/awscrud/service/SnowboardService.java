@@ -6,11 +6,14 @@ import com.awscrud.domain.Snowboard;
 
 public interface SnowboardService
 {
-	public boolean createSnowboard(Snowboard snowboard)throws Exception;
+	public boolean createSnowboard(Snowboard snowboard) throws Exception;
 
-	public List<Snowboard> getAllSnowboards()throws Exception;
+	public List<Snowboard> getAllSnowboards() throws Exception;
 	
-	public void deleteSnowboardById(long snowboardId)throws Exception;
+	public void deleteSnowboardById(long snowboardId) throws Exception;
+	
+	public boolean updateSnowboard(Long snowboardId, String fieldModified,
+	String newValue) throws Exception;
 /*
 	public Snowboard getSnowboardById(int snowboardId)throws Exception;	
 	
