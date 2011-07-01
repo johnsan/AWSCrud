@@ -67,7 +67,7 @@
 				<span>${snowboard.genre}</span>
 			</div>
 			<div class="right">
-				<span><a href="/snowboard/deleteSnowboard/${snowboard.id}">Delete</a></span>
+				<span><a href="/AWSCrud/snowboard/deleteSnowboard.do?id=${snowboard.id}">Delete</a></span>
 			</div>
 		</div>
 	</c:forEach>

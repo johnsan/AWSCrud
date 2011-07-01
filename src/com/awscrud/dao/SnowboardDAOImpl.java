@@ -79,6 +79,26 @@ public class SnowboardDAOImpl implements SnowboardDAO {
             }
         }
 	}
+	
+	public void deleteSnowboardById(long snowboardId) throws Exception {
+		log.info("Deleting snowboard: " + snowboardId);
+		
+		EntityManager em = null;
+
+        try {    		
+            em = factory.createEntityManager();
+            Query query = em.createQuery("select s from com.awscrud.domain.Snowboard s where s.id= :snowboardid");
+            query.setParameter("snowboardid", snowboardId);
+            List<Snowboard> snowboards = query.getResultList();
+            Snowboard snowboard = (Snowboard) snowboards.get(0);
+            em.remove(snowboard);
+        }
+        finally {
+            if (em!=null) {
+                em.close();
+            }
+        }
+	}
 /*
 	public void updateSnowboard(Snowboard snowboard) throws Exception {
 
@@ -96,16 +116,6 @@ public class SnowboardDAOImpl implements SnowboardDAO {
 		Snowboard snowboard = (Snowboard) obs.get(0);
 		em.close();
 		return snowboard;
-	}
-
-	public void deleteSnowboardById(int snowboardId) throws Exception {
-		EntityManager em = SimpleDBEntityManagerFactory.getEntityManager();
-		Query q = em.createQuery("select o from Snowboard o where o.id= :snowboardid");
-		q.setParameter("snowboardid", snowboardId);
-		List<Snowboard> obs = q.getResultList();
-		Snowboard snowboard = (Snowboard) obs.get(0);
-		em.remove(snowboard);
-		em.close();
 	}
 
 	public void deleteSnowboard(Snowboard snowboard) throws Exception {

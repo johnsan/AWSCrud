@@ -3,8 +3,10 @@ package com.awscrud.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.awscrud.domain.Snowboard;
@@ -25,13 +27,21 @@ public class SnowboardController {
 		
 		return "redirect:manageSnowboard.do";
 	}
-/*	
-	@RequestMapping(value = "/deleteSnowboard/{id}")
-	public String processDeleteSnowboard(@PathVariable ("id") Long id) {
+/*
+    @RequestMapping("/deleteEntry.do")
+    public ModelAndView doDeleteEntry (@RequestParam("entryId") String entryId, ModelMap map) {
+        Entry entry = dao.getEntry(entryId);
+        dao.deleteEntry(entry);
+        doHome(map);
+        return new ModelAndView("redirect:home.do");
+    }
+*/	
+	@RequestMapping(value = "/deleteSnowboard.do")
+	public String processDeleteSnowboard(@RequestParam("id") long id) throws Exception {
 		
-		snowboardManager.deleteSnowboard(id);
+		snowboardService.deleteSnowboardById(id);
 
-		return "redirect:/snowboard/manageSnowboard";
+		return "redirect:/snowboard/manageSnowboard.do";
 	}
 	
 	@RequestMapping(value = "/ajaxUpdate/{id}/{fieldModified}/{newValue}", 
@@ -40,11 +50,11 @@ public class SnowboardController {
 			@PathVariable ("fieldModified") String fieldModified, 
 			@PathVariable ("newValue") String newValue){
 		
-		snowboardManager.updateSnowboard(id, fieldModified, newValue);
+		//snowboardManager.updateSnowboard(id, fieldModified, newValue);
 
 		return null;
 	}
-*/	
+	
 	@RequestMapping("/manageSnowboard.do")
 	public ModelAndView showSnowboards() throws Exception {
 		

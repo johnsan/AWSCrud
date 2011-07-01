@@ -17,6 +17,10 @@ public class SnowboardServiceImpl implements SnowboardService {
 	public List<Snowboard> getAllSnowboards() throws Exception {
 		return snowboardDAO.getAllSnowboards();
 	}
+	
+	public void deleteSnowboardById(long snowboardId) throws Exception {
+		snowboardDAO.deleteSnowboardById(snowboardId);
+	}
 /*
 	public void updateSnowboard(Snowboard snowboard) throws Exception {
 		snowboardDAO.updateSnowboard(snowboard);
@@ -24,10 +28,6 @@ public class SnowboardServiceImpl implements SnowboardService {
 
 	public Snowboard getSnowboardById(int snowboardId) throws Exception {
 		return snowboardDAO.getSnowboardById(snowboardId);
-	}
-
-	public void deleteSnowboardById(int snowboardId) throws Exception {
-		snowboardDAO.deleteSnowboardById(snowboardId);
 	}
 
 	public void deleteSnowboard(Snowboard snowboard) throws Exception {
